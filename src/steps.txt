@@ -1,0 +1,2 @@
+D:\Ahemad\acquisitions>npm install eslint @eslint/js prettier eslint-config-prettier eslint-plugin-prettier 
+-D
