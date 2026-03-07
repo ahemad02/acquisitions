@@ -41,6 +41,7 @@ docker compose -f docker-compose.dev.yml up --build
 ```
 
 This starts:
+
 - **neon-db** — Neon Local proxy on port `5432` (creates an ephemeral branch)
 - **app** — Express server on port `3000` with file watching enabled
 
@@ -107,24 +108,24 @@ This means the same application code runs in both environments — only the env 
 
 ### App variables (`.env.development` / `.env.production`)
 
-| Variable | Description | Required |
-|---|---|---|
-| `PORT` | Server port | No (default: 3000) |
-| `NODE_ENV` | `development` or `production` | Yes |
-| `DATABASE_URL` | Postgres connection string | Yes |
-| `NEON_FETCH_ENDPOINT` | Neon Local HTTP endpoint (dev only) | No |
-| `JWT_SECRET` | Secret for signing JWTs | Yes |
-| `JWT_EXPIRATION` | JWT expiry duration | No (default: 1d) |
-| `ARCJET_KEY` | Arcjet API key | Yes |
-| `LOG_LEVEL` | Winston log level | No (default: info) |
+| Variable              | Description                         | Required           |
+| --------------------- | ----------------------------------- | ------------------ |
+| `PORT`                | Server port                         | No (default: 3000) |
+| `NODE_ENV`            | `development` or `production`       | Yes                |
+| `DATABASE_URL`        | Postgres connection string          | Yes                |
+| `NEON_FETCH_ENDPOINT` | Neon Local HTTP endpoint (dev only) | No                 |
+| `JWT_SECRET`          | Secret for signing JWTs             | Yes                |
+| `JWT_EXPIRATION`      | JWT expiry duration                 | No (default: 1d)   |
+| `ARCJET_KEY`          | Arcjet API key                      | Yes                |
+| `LOG_LEVEL`           | Winston log level                   | No (default: info) |
 
 ### Neon Local variables (dev compose only)
 
-| Variable | Description | Required |
-|---|---|---|
-| `NEON_API_KEY` | Neon API key | Yes |
-| `NEON_PROJECT_ID` | Neon project ID | Yes |
-| `PARENT_BRANCH_ID` | Branch to fork ephemeral branches from | Yes |
+| Variable           | Description                            | Required |
+| ------------------ | -------------------------------------- | -------- |
+| `NEON_API_KEY`     | Neon API key                           | Yes      |
+| `NEON_PROJECT_ID`  | Neon project ID                        | Yes      |
+| `PARENT_BRANCH_ID` | Branch to fork ephemeral branches from | Yes      |
 
 ---
 
