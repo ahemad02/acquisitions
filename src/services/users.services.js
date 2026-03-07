@@ -39,7 +39,7 @@ export const getUserById = async id => {
       .where(eq(users.id, id));
 
     if (!user.length) {
-      throw new Error('User not found');
+      throw new Error('User not found', 404);
     }
 
     return user[0];
@@ -57,7 +57,7 @@ export const updateUser = async (id, updates) => {
     const existingUser = await db.select().from(users).where(eq(users.id, id));
 
     if (!existingUser.length) {
-      throw new Error('User not found');
+      throw new Error('User not found', 404);
     }
 
     const updatedUser = await db
@@ -91,7 +91,7 @@ export const deleteUser = async id => {
     const existingUser = await db.select().from(users).where(eq(users.id, id));
 
     if (!existingUser.length) {
-      throw new Error('User not found');
+      throw new Error('User not found', 404);
     }
 
     await db.delete(users).where(eq(users.id, id));

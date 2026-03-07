@@ -9,7 +9,7 @@ export const hashPassword = async passsword => {
     return await bcrypt.hash(passsword, 10);
   } catch (error) {
     logger.error('Error hashing password:', error);
-    throw new Error('Failed to hash password');
+    throw new Error('Failed to hash password', error);
   }
 };
 
@@ -18,7 +18,7 @@ export const comparePassword = async (password, hashedPassword) => {
     return await bcrypt.compare(password, hashedPassword);
   } catch (error) {
     logger.error('Error comparing password:', error);
-    throw new Error('Failed to compare password');
+    throw new Error('Failed to compare password', error);
   }
 };
 
@@ -31,7 +31,7 @@ export const authenticateUser = async ({ email, password }) => {
       .limit(1);
 
     if (!existingUser) {
-      throw new Error('User not found');
+      throw new Error('User not found', 404);
     }
 
     const isPasswordValid = await comparePassword(
@@ -40,7 +40,7 @@ export const authenticateUser = async ({ email, password }) => {
     );
 
     if (!isPasswordValid) {
-      throw new Error('Invalid password');
+      throw new Error('Invalid password', 401);
     }
 
     return existingUser;
@@ -59,7 +59,7 @@ export const createUser = async ({ name, email, password, role = 'user' }) => {
       .limit(1);
 
     if (existingUser.length > 0) {
-      throw new Error('User with this email already exists');
+      throw new Error('User with this email already exists', 400);
     }
 
     const password_hash = await hashPassword(password);
@@ -85,6 +85,6 @@ export const createUser = async ({ name, email, password, role = 'user' }) => {
     return newUser;
   } catch (error) {
     logger.error('Error creating user:', error);
-    throw new Error('Failed to create user');
+    throw new Error('Failed to create user', error);
   }
 };

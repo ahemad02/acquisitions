@@ -11,6 +11,8 @@ import {
   updateUserSchema,
 } from '#validations/users.validation.js';
 
+import bcrypt from 'bcrypt';
+
 export const fetchAllUsers = async (req, res, next) => {
   try {
     logger.info('Getting all users...');
